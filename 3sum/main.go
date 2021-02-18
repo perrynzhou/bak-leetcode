@@ -6,36 +6,36 @@ import (
 )
 
 func threeSum(nums []int) [][]int {
-	result := make([][]int,0)
-    if nums==nil || len(nums)<3 {
-    	return result
+	result := make([][]int, 0)
+	if nums == nil || len(nums) < 3 {
+		return result
 	}
-	sort.Slice(nums,func(i,j int)bool{
-		return nums[i]>nums[j]
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] > nums[j]
 	})
-	for i:=0;i<len(nums)-2;i++ {
+	for i := 0; i < len(nums)-2; i++ {
 		n1 := nums[i]
-		if n1>0 {
+		if n1 > 0 {
 			break
 		}
-		if i>0  && n1==nums[i-1] {
+		if i > 0 && n1 == nums[i-1] {
 			continue
 		}
-		l,r := i+1,len(nums)-1
-		for l<r {
-			n2,n3 := nums[l],nums[r]
-			sum:=n1+n2+n3
-			if sum ==0 {
-				result=append(result,[]int{n1,n2,n3})
-				for l<r && n2==nums[l] {
+		l, r := i+1, len(nums)-1
+		for l < r {
+			n2, n3 := nums[l], nums[r]
+			sum := n1 + n2 + n3
+			if sum == 0 {
+				result = append(result, []int{n1, n2, n3})
+				for l < r && n2 == nums[l] {
 					l++
 				}
-				for l<r && n3==nums[r] {
+				for l < r && n3 == nums[r] {
 					r--
 				}
-			}else if sum >0 {
+			} else if sum > 0 {
 				r--
-			}else {
+			} else {
 				l++
 			}
 		}
@@ -43,11 +43,11 @@ func threeSum(nums []int) [][]int {
 	return result
 }
 func main() {
-	fmt.Println("output result:",threeSum([]int{0,0,0,0}))
-	fmt.Println("output result:",threeSum([]int{-2,0,1,1,2}))
-//[3,0,-2,-1,1,2]
-	fmt.Println("output result:",threeSum([]int{3,0,-2,-1,1,2}))
-	fmt.Println("output result:",threeSum([]int{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6}))
+	fmt.Println("output result:", threeSum([]int{0, 0, 0, 0}))
+	fmt.Println("output result:", threeSum([]int{-2, 0, 1, 1, 2}))
+	//[3,0,-2,-1,1,2]
+	fmt.Println("output result:", threeSum([]int{3, 0, -2, -1, 1, 2}))
+	fmt.Println("output result:", threeSum([]int{-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6}))
 
 	//[-2,0,1,1,2]
 }

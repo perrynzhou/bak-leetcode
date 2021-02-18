@@ -1,0 +1,65 @@
+package main
+
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
+
+//link:https://leetcode-cn.com/problems/substring-with-concatenation-of-all-words/
+func findSubstring(s string, words []string) []int {
+	substr :=make([][]string,0)
+	origin :=make([]string,len(words))
+	//mp :=make(map[string]bool)
+	sort.Slice(words,func(i,j int)bool{
+		return words[i]<words[j]
+	})
+	copy(origin,words)
+	for i:=0;i<len(words);i++{
+		for j:=0;j<len(words);j++ {
+				ch:=words[i]
+				words[i]=words[j]
+				words[j]=ch
+				tmp :=make([]string,len(words))
+				copy(tmp,words)
+				substr =append(substr,tmp)
+			  //  copy(words,origin)
+		}
+	}
+	for i:=0;i<len(substr);i++ {
+		fmt.Println(substr[i])
+	}
+	sLen :=len(s)
+	var result []int
+	for j:=0;j<len(substr);j++ {
+			cmpStr := strings.Join(substr[j],"")
+			cmdStrLen :=len(cmpStr)
+            fmt.Println("value:",cmpStr)
+			for i:=0;i<sLen;i++ {
+                   k:=0
+                   if k<cmdStrLen && s[i]!=cmpStr[k] {
+                   	   continue
+				   }
+				   if (i+cmdStrLen)>sLen {
+				   	 break
+				   }
+				   if s[i:i+cmdStrLen]==cmpStr {
+					   result=append(result,int(i))
+				   }
+			}
+	}
+	fmt.Println("result:",result)
+   return result
+}
+func main() {
+	findSubstring("barfoothefoobarman",[]string{"foo","bar"})
+	findSubstring("wordgoodgoodgoodbestword",[]string{"word","good","best","word"})
+	//"wordgoodgoodgoodbestword"
+	//["word","good","best","good"]
+	findSubstring("wordgoodgoodgoodbestword",[]string{"word","good","best","good"})
+	//"lingmindraboofooowingdingbarrwingmonkeypoundcake"
+	//["fooo","barr","wing","ding","wing"]
+	findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake",[]string{"fooo","barr","wing","ding","wing"})
+
+
+}

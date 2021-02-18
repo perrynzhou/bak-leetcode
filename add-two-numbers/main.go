@@ -45,8 +45,8 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		// 当插入完成以后，需要针对这个值进行进位，进位的值为mid/10；如果mid小于10，则设置mid为0
 		if mid >= 10 {
 			mid = mid / 10
-		}else{
-			mid =0
+		} else {
+			mid = 0
 		}
 
 	}

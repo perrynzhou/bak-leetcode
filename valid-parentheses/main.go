@@ -6,36 +6,36 @@ import (
 )
 
 func isValid(s string) bool {
-  if len(s)<=1 {
-  	return false
-  }
-  stack :=[]string{}
-  mp :=map[string]string {
-  "(":")",
-  "{":"}",
-  "[":"]",
-  }
-  var match int
-  for i:=0;i<len(s);i++ {
-  	if s[i]=='{'||s[i]=='['||s[i]=='(' {
-  		stack = append(stack,string(s[i]))
-  		continue
+	if len(s) <= 1 {
+		return false
 	}
-	stackLen := len(stack)
-	if stackLen > 0 {
-		key := stack[stackLen-1]
-		if mp[key]!=string(s[i]) {
-			return false
+	stack := []string{}
+	mp := map[string]string{
+		"(": ")",
+		"{": "}",
+		"[": "]",
+	}
+	var match int
+	for i := 0; i < len(s); i++ {
+		if s[i] == '{' || s[i] == '[' || s[i] == '(' {
+			stack = append(stack, string(s[i]))
+			continue
 		}
-		stack =stack[:stackLen-1]
+		stackLen := len(stack)
+		if stackLen > 0 {
+			key := stack[stackLen-1]
+			if mp[key] != string(s[i]) {
+				return false
+			}
+			stack = stack[:stackLen-1]
 
-		match++
+			match++
+		}
 	}
-  }
-  if len(s)!=(2*match) || (len(stack)>0 && match<=0) {
-  	return false
-  }
-  return true
+	if len(s) != (2*match) || (len(stack) > 0 && match <= 0) {
+		return false
+	}
+	return true
 }
 
 func main() {
