@@ -6,25 +6,26 @@ type ListNode struct {
 }
 
 func deleteDuplicates(head *ListNode) *ListNode {
-	originHead := head
-   slow,fast := head,head.Next
-   var newHead *ListNode
-	var newTail *ListNode
- // 1,1,2,2,3
-	for slow != nil && fast !=nil {
-    	if slow.Val != fast.Val {
-    		if newHead == nil {
-    			newHead = slow
-				newTail = slow
-			}else{
-				newTail.Next = slow
-				newTail=slow
-			}
-		}else {
-			slow = fast.Next
-
-		}
-		slow = slow.Next
-		fast = fast.Next
+   dict :=make(map[int]int)
+   tmp :=head
+   for {
+   	   if tmp ==nil {
+   	    	break
+	   }
+	   dict[tmp.Val]++
+	   tmp = tmp.Next
+   }
+   tmp = head
+   var prev *ListNode
+   for k,v :=range dict {
+   	if v==1 {
+   		tmp.Val=k
+   		prev = tmp
+   		tmp = tmp.Next
 	}
+   }
+   if prev!=nil {
+	   prev.Next = nil
+   }
+	return head
 }
