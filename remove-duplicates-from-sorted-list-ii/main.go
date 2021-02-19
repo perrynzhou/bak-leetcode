@@ -31,24 +31,61 @@ func printLists(l *ListNode) {
 }
 func deleteDuplicates(head *ListNode) *ListNode {
    cur :=head
+   dict :=make(map[int]int)
    for {
         if cur == nil {
         	break
 		}
+		dict[cur.Val]++
+		cur = cur.Next
+   }
+   var newHead *ListNode
+   var newTail *ListNode
+   cur = head
+    for {
+    	if cur ==nil {
+    		break
+		}
 		next := cur.Next
-		if next !=nil {
-			if cur.Val == next.Val {
-				cur = next.Next
+		cur.Next = nil
+		if dict[cur.Val] ==1 {
+			if newHead == nil {
+				newHead = cur
+				newTail = cur
+				fmt.Println("head:",cur.Val)
 			}else {
-				fmt.Println("value:",cur.Val)
+				newTail.Next = cur
+				newTail = cur
+				fmt.Println("tail:",cur.Val)
 			}
 		}
 		cur = next
-   }
+	}
+	return newHead
+}
+func deleteDuplicates_v2(head *ListNode) *ListNode {
+	cur := head
+	var prev *ListNode
+	for {
+		if cur == nil {
+			break
+		}
+		next := cur.Next
+		if prev == nil {
+			prev = cur
+		}else {
+			if prev.Val == cur.Val {
+				cur = next
+				prev = nil
+			}else {
+				fmt.Println()
+			}
+		}
 
-	return head
+	}
 }
 func main() {
   l1 := buildList([]int{1,2,2,3,3,5})
-	deleteDuplicates(l1)
+  l2:=deleteDuplicates(l1)
+	printLists(l2)
 }
