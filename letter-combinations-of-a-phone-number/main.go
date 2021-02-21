@@ -1,7 +1,5 @@
 package main
 
-import "strings"
-
 func letterCombinations(digits string) []string {
 	mp := map[int][]string{
 		2: {"d", "e", "f"},

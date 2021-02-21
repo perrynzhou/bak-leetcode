@@ -1,8 +1,10 @@
 package main
+
 //link :https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/
 import (
 	"fmt"
 )
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -30,33 +32,33 @@ func printLists(l *ListNode) {
 	}
 }
 func deleteDuplicates(head *ListNode) *ListNode {
-   cur :=head
-   dict :=make(map[int]int)
-   for {
-        if cur == nil {
-        	break
+	cur := head
+	dict := make(map[int]int)
+	for {
+		if cur == nil {
+			break
 		}
 		dict[cur.Val]++
 		cur = cur.Next
-   }
-   var newHead *ListNode
-   var newTail *ListNode
-   cur = head
-    for {
-    	if cur ==nil {
-    		break
+	}
+	var newHead *ListNode
+	var newTail *ListNode
+	cur = head
+	for {
+		if cur == nil {
+			break
 		}
 		next := cur.Next
 		cur.Next = nil
-		if dict[cur.Val] ==1 {
+		if dict[cur.Val] == 1 {
 			if newHead == nil {
 				newHead = cur
 				newTail = cur
-				fmt.Println("head:",cur.Val)
-			}else {
+				fmt.Println("head:", cur.Val)
+			} else {
 				newTail.Next = cur
 				newTail = cur
-				fmt.Println("tail:",cur.Val)
+				fmt.Println("tail:", cur.Val)
 			}
 		}
 		cur = next
@@ -75,40 +77,38 @@ func deleteDuplicates_v2(head *ListNode) *ListNode {
 		next := cur.Next
 		if prev == nil {
 			prev = cur
-		}else {
+		} else {
 			if prev.Val == cur.Val {
 				skip = true
-			}else {
+			} else {
 				if !skip {
-					fmt.Println("value:",prev.Val)
+					fmt.Println("value:", prev.Val)
 				}
 				skip = false
 			}
-			fmt.Println("prev:",prev.Val,",cur:",cur.Val,",skip:",skip)
+			fmt.Println("prev:", prev.Val, ",cur:", cur.Val, ",skip:", skip)
 			prev = cur
 		}
 		cur = next
 	}
 	if prev != nil {
-		fmt.Println("prev:",prev.Val,",skip:",skip)
+		fmt.Println("prev:", prev.Val, ",skip:", skip)
 
 	}
 	return nil
 }
 func main() {
-  l1 := buildList([]int{1,2,2,3,3,5})
+	l1 := buildList([]int{1, 2, 2, 3, 3, 5})
 	deleteDuplicates_v2(l1)
 
-
-	l2 := buildList([]int{1,1,2,3,5})
+	l2 := buildList([]int{1, 1, 2, 3, 5})
 	deleteDuplicates_v2(l2)
-  /*
-  l2:=deleteDuplicates(l1)
+	/*
+	  l2:=deleteDuplicates(l1)
 
 
-	printLists(l2)
+		printLists(l2)
 
-   */
-
+	*/
 
 }
