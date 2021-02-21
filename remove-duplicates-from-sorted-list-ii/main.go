@@ -66,26 +66,49 @@ func deleteDuplicates(head *ListNode) *ListNode {
 func deleteDuplicates_v2(head *ListNode) *ListNode {
 	cur := head
 	var prev *ListNode
+	var skip bool
 	for {
 		if cur == nil {
 			break
 		}
+
 		next := cur.Next
 		if prev == nil {
 			prev = cur
 		}else {
 			if prev.Val == cur.Val {
-				cur = next
-				prev = nil
+				skip = true
 			}else {
-				fmt.Println()
+				if !skip {
+					fmt.Println("value:",prev.Val)
+				}
+				skip = false
 			}
+			fmt.Println("prev:",prev.Val,",cur:",cur.Val,",skip:",skip)
+			prev = cur
 		}
+		cur = next
+	}
+	if prev != nil {
+		fmt.Println("prev:",prev.Val,",skip:",skip)
 
 	}
+	return nil
 }
 func main() {
   l1 := buildList([]int{1,2,2,3,3,5})
+	deleteDuplicates_v2(l1)
+
+
+	l2 := buildList([]int{1,1,2,3,5})
+	deleteDuplicates_v2(l2)
+  /*
   l2:=deleteDuplicates(l1)
+
+
 	printLists(l2)
+
+   */
+
+
 }
