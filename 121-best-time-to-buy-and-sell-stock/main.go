@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//link:https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
+//link:
 func maxProfit_v2(prices []int) int {
 	n := len(prices)
 	res, min := 0, prices[0]
@@ -23,7 +23,7 @@ func maxProfit(prices []int) int {
 		if tmp := prices[i] - min; tmp > result {
 			result = tmp
 		}
-		if prices[i] > min {
+		if prices[i] < min {
 			min = prices[i]
 		}
 	}
