@@ -9,7 +9,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers_v2(l1 *ListNode, l2 *ListNode) *ListNode {
 	mid := 0
 	var tail *ListNode
 	var head *ListNode
@@ -60,6 +60,50 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 	return head
 }
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	var head *ListNode
+	var tail *ListNode
+	var sum int
+	var incr int
+	for {
+		if l1==nil && l2 ==nil {
+			break
+		}
+		if l1!=nil {
+			sum +=l1.Val
+			l1=l1.Next
+		}
+		if l2 != nil {
+			sum +=l2.Val
+			l2=l2.Next
+		}
+		sum+=incr
+		if sum >9 {
+			incr = 1
+		}else {
+			incr = 0
+		}
+		newNode := &ListNode{
+			Val:sum%10,
+		}
+		fmt.Println("mid:",newNode.Val,",sum:",sum,",incr:",incr)
+		if head == nil {
+			head = newNode
+			tail = head
+		}else {
+			tail.Next = newNode
+			tail = newNode
+		}
+		sum = 0
+	}
+	if incr==1 {
+		newNode := &ListNode{
+			Val:1,
+		}
+		tail.Next = newNode
+	}
+	return head
+}
 func BuildList(nums []int) *ListNode {
 	var tail *ListNode
 	var head *ListNode
@@ -91,8 +135,8 @@ func PrintList(l1 *ListNode) {
 	}
 }
 func main() {
-	l1 := BuildList([]int{9, 9, 9, 9, 9, 9, 9})
-	l2 := BuildList([]int{9, 9, 9, 9})
+	l1 := BuildList([]int{9,9,9})
+	l2 := BuildList([]int{9,9,9,9,9,9,9})
 	PrintList(l1)
 	PrintList(l2)
 	head := addTwoNumbers(l1, l2)
