@@ -104,10 +104,10 @@ func main() {
 	l2 := buildList([]int{1, 1, 2, 3, 5})
 	deleteDuplicates_v2(l2)
 	/*
-	  l2:=deleteDuplicates(l1)
+		  l2:=deleteDuplicates(l1)
 
 
-		printLists(l2)
+			printLists(l2)
 
 	*/
 

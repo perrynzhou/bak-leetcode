@@ -66,39 +66,39 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	var sum int
 	var incr int
 	for {
-		if l1==nil && l2 ==nil {
+		if l1 == nil && l2 == nil {
 			break
 		}
-		if l1!=nil {
-			sum +=l1.Val
-			l1=l1.Next
+		if l1 != nil {
+			sum += l1.Val
+			l1 = l1.Next
 		}
 		if l2 != nil {
-			sum +=l2.Val
-			l2=l2.Next
+			sum += l2.Val
+			l2 = l2.Next
 		}
-		sum+=incr
-		if sum >9 {
+		sum += incr
+		if sum > 9 {
 			incr = 1
-		}else {
+		} else {
 			incr = 0
 		}
 		newNode := &ListNode{
-			Val:sum%10,
+			Val: sum % 10,
 		}
-		fmt.Println("mid:",newNode.Val,",sum:",sum,",incr:",incr)
+		fmt.Println("mid:", newNode.Val, ",sum:", sum, ",incr:", incr)
 		if head == nil {
 			head = newNode
 			tail = head
-		}else {
+		} else {
 			tail.Next = newNode
 			tail = newNode
 		}
 		sum = 0
 	}
-	if incr==1 {
+	if incr == 1 {
 		newNode := &ListNode{
-			Val:1,
+			Val: 1,
 		}
 		tail.Next = newNode
 	}
@@ -135,8 +135,8 @@ func PrintList(l1 *ListNode) {
 	}
 }
 func main() {
-	l1 := BuildList([]int{9,9,9})
-	l2 := BuildList([]int{9,9,9,9,9,9,9})
+	l1 := BuildList([]int{9, 9, 9})
+	l2 := BuildList([]int{9, 9, 9, 9, 9, 9, 9})
 	PrintList(l1)
 	PrintList(l2)
 	head := addTwoNumbers(l1, l2)

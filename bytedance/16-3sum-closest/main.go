@@ -42,35 +42,35 @@ func threeSumClosest_v2(nums []int, target int) int {
 	return best
 }
 func threeSumClosest(nums []int, target int) int {
-	best,n := math.MaxInt32,len(nums)
-	 if n<3 {
-	 	return  best
-	 }
-	 sort.Slice(nums,func(i,j int)bool{
-	 	return nums[i]<nums[j]
-	 })
-	for i:=0;i<n-2;i++ {
+	best, n := math.MaxInt32, len(nums)
+	if n < 3 {
+		return best
+	}
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] < nums[j]
+	})
+	for i := 0; i < n-2; i++ {
 		n1 := nums[i]
-		if i>1 && n1==nums[i-1] {
+		if i > 1 && n1 == nums[i-1] {
 			continue
 		}
-		l,r := i+1,n-1
-		for l<r {
-			n2,n3 := nums[l],nums[r]
-			sum := n1+n2+n3
+		l, r := i+1, n-1
+		for l < r {
+			n2, n3 := nums[l], nums[r]
+			sum := n1 + n2 + n3
 			if math.Abs(float64(sum-target)) < math.Abs(float64(best-target)) {
 				best = sum
 			}
 			dis := sum - target
 			if dis > 0 {
-				for l<r && n3 ==nums[r] {
+				for l < r && n3 == nums[r] {
 					r--
 				}
-			}else if dis < 0 {
-				for l<r && n2 ==nums[l] {
+			} else if dis < 0 {
+				for l < r && n2 == nums[l] {
 					l++
 				}
-			}else {
+			} else {
 				return sum
 			}
 		}

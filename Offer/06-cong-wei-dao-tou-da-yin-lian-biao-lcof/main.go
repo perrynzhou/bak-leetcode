@@ -1,4 +1,4 @@
-package help
+package main
 
 import "fmt"
 
@@ -28,4 +28,24 @@ func printLists(l *ListNode) {
 		fmt.Printf("%d ", l.Val)
 		l = l.Next
 	}
+}
+
+func reversePrint(head *ListNode) []int {
+	var result []int
+	for head != nil {
+		result = append(result, head.Val)
+		head = head.Next
+	}
+	i, j := 0, len(result)-1
+	for i < j {
+		result[i], result[j] = result[j], result[i]
+		i++
+		j--
+	}
+	return result
+}
+
+func main() {
+	l2 := buildList([]int{1, 2, 3, 4, 5})
+	fmt.Println(reversePrint(l2))
 }

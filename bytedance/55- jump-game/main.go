@@ -36,12 +36,12 @@ func canJump_v2(nums []int) bool {
 	return index == 0
 }
 func canJump(nums []int) bool {
-	n,index := len(nums),len(nums)-1
-	if n<=1 {
+	n, index := len(nums), len(nums)-1
+	if n <= 1 {
 		return true
 	}
-	for i:=n-2;i>=0;i-- {
-		if nums[i]+i>=index {
+	for i := n - 2; i >= 0; i-- {
+		if nums[i]+i >= index {
 			index = i
 		}
 	}

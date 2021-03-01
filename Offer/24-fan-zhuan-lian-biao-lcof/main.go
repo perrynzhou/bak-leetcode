@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
@@ -32,22 +32,22 @@ func printLists(l *ListNode) {
 
 //link:https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
 func reverseList(head *ListNode) *ListNode {
-    var newHead *ListNode
-    if head != nil && newHead == nil {
-    	next := head.Next
-    	newHead = head
-    	newHead.Next = nil
-    	head = next
+	var newHead *ListNode
+	if head != nil && newHead == nil {
+		next := head.Next
+		newHead = head
+		newHead.Next = nil
+		head = next
 	}
- 	for head!=nil  {
-	    next :=head.Next
-	    head.Next = newHead
-	    newHead = head
+	for head != nil {
+		next := head.Next
+		head.Next = newHead
+		newHead = head
 		head = next
 	}
 	return newHead
 }
 func main() {
-	l1 :=buildList([]int{1,2,3,4,5})
+	l1 := buildList([]int{1, 2, 3, 4, 5})
 	printLists(reverseList(l1))
 }
